@@ -1,9 +1,10 @@
 import sys
 import pickle
 import getpass
+import collections
 import coursera_session
 
-courses_done = {}
+courses_done = collections.defaultdict(set)
 
 try:
     with open(".save_data", "rb") as f:
@@ -46,14 +47,11 @@ specified courses are updated.""")
         for course_id in args:
             try:
                 print("\n [****] Updating course", course_id)
-                if course_id not in courses_done:
-                    courses_done[course_id] = set()
-
                 video_ids = session.scrape_video_ids(course_id)
                 if not video_ids:
                     print(" [*] There are no videos to download for `%s`." % (course_id))
                 else:
-                    print(" [*]", len(video_ids), "videos to download")
+                    print(" [*]", len(courses_done[course_id] - set(video_ids)), "videos to download")
                     print(" [*]")
 
                 while video_ids:
@@ -67,6 +65,9 @@ specified courses are updated.""")
             except:
                 msg = "An error occured while downloading videos for `%s`. Try updating again later."
                 print(msg % (course_id,))
+
+        print(" [*] ")
+        print(" [****] All registered courses are updated!")
 
 
 def add_courses(args):
