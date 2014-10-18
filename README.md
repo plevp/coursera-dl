@@ -13,10 +13,10 @@ The `coursera_session` module provides a class `CourseraSession`. The class is d
 This module implements a CLI using the `coursera_session` module. It maintains records of already downloaded videos and courses to monitor. It facilitates adding and removing of courses from the downloader, and updating registered courses. The CLI is as follows:
 
 ```
-	python coursera-dl.py update [help | all | (course_id)...]`
-	python coursera-dl.py courses add [help | (course_id)...]`
-	python coursera-dl.py courses remove [help | all | (course_id)...]`
-	python coursera-dl.py courses list`
+	coursera-dl.py update [help | all | (course_id)...]`
+	coursera-dl.py courses add [help | (course_id)...]`
+	coursera-dl.py courses remove [help | all | (course_id)...]`
+	coursera-dl.py courses list`
 ```
 
 ####coursera-dl update
@@ -26,30 +26,32 @@ It accepts a list of course IDs, or the word `all`. Specifiying all
 causes the downloader to update all registered courses. Otherwise, only
 specified courses are updated. For example, updating all courses:
 
-	`coursera-dl update all`
+`coursera-dl update all`
 
 And to update only specific courses:
 
-	`coursera-dl update algo-001 crypto-01`
+`coursera-dl update algo-001 crypto-01`
+
+Courses will be updated in the order they are specified.
 
 ####coursera-dl courses add
 This function allows you to add courses to the list of maintained courses. 
 Course IDs should be separated by a space. An example of a valid command for this function is:
 
-	`coursera-dl courses add proglan-003 ml-008 mmds-01`
+`coursera-dl courses add proglan-003 ml-008 mmds-01`
 
 ####coursera-dl courses remove
 This function allows you to remove courses from the list of maintained courses. 
 Course IDs should be separated by a space. In the case you wish to remove all courses 
 (i.e, reset the state of the program), use `all` as the sole argument; for example:
 
-	`coursera-dl courses remove all`
+`coursera-dl courses remove all`
 
 Another example of a valid command for this function is:
 
-	`coursera-dl courses remove algo-001 crypto-01`
+`coursera-dl courses remove algo-001 crypto-01`
 
 ####coursera-dl courses list
 This function will print a list of all registered courses. It's use is very simple:
 
-	`coursera-dl courses list`
+`coursera-dl courses list`
