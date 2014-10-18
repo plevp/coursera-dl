@@ -112,12 +112,29 @@ def print_course_list():
         print(" [*]", course)
 
 
+def print_courses_help():
+	print("""This function may be used to view registered courses, or 
+register and unregister courses. It provides three functions: `add`,
+`remove` and `list`.
+
+Help for the `add` and `remove` functions may be viewed by calling
+them with no arguments (`courses-dl.py courses add` for example).""")
+
+
 def print_arg_error():
     print(" [E] Invalid parameters. Run with parameter 'help' to learn how to use this tool.")
 
 
 def print_help():
-    print("""The downloader""")
+    print("""The downloader keeps tracks of the courses you register,
+and downloads any new lectures whenever the update function is run.
+
+Help for the update function may be accessed by running the script with `update`
+as the first parameter.
+
+Courses can be registered and unregistered by using the `courses` function.
+Help for the courses function may be accessed by running the script with
+`courses` as the first parameter.""")
 
 
 if __name__ == '__main__':
@@ -129,7 +146,7 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == 'courses':
         if len(sys.argv) == 2:
-            print_arg_error()
+            print_courses_help()
         elif sys.argv[2] == 'add':
             add_courses(sys.argv[3:])
         elif sys.argv[2] == 'remove':
